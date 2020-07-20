@@ -1,3 +1,6 @@
 /bin
 /gen
 /src-gen
+/model
+/instances
+/debug

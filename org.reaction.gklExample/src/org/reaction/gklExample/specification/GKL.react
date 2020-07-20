@@ -1,0 +1,27 @@
+agent K: a
+agent P: a
+agent T: x(u,p), y(u,p)
+
+var initAmount = 100
+
+init initAmount (k: K, p: P, t: T): k, p, t
+
+complex (k: K, t: T){
+	rule KT_x: k.a//0, t.x//0 	<=> k.a+t.x 	@1.0, 10.0 
+	rule Tp_x: k.a+t.x(u) 		 => k.a+t.x(p) 	@1.0
+	rule KT_y: k.a//0, t.y//0 	<=> k.a+t.y 	@1.0, 10.0
+	rule Tp_y: k.a+t.y(u) 		 => k.a+t.y(p) 	@1.0 
+}
+
+complex (p: P, t:T){
+	rule PT_x: p.a//0, t.x//0 	<=> p.a+t.x 	@1.0, 10.0
+	rule Tu_x: p.a+t.x(p) 		 => p.a+t.x(u) 	@1.0
+	rule PT_y: p.a//0, t.y//0 	<=> p.a+t.y 	@1.0, 10.0
+	rule Tu_y: p.a+t.y(p) 		 => p.a+t.y(u) 	@1.0
+}
+
+
+observe T_pp (t: T): t.x(p), t.y(p)	
+observe T_pp_unbound (t: T): t.x(p)//0, t.y(p)//0
+
+terminate iterations = 30000      
