@@ -1,5 +1,5 @@
 # Re.actionFramework-tests
-This repository provides Demos and Unit-Tests for the Re.action Framework, which is mainly comprised of the *Re.action* language and the necessary code for integrating and using it with the simulation tool [SimSG](https://github.com/Echtzeitsysteme/SimSG).
+This repository provides Demos and Unit-Tests for the [Re.action](https://github.com/Echtzeitsysteme/Re.actionFramework) framework, which is mainly comprised of the *Re.action* language and the necessary code for integrating and using it with the simulation tool [SimSG](https://github.com/Echtzeitsysteme/SimSG).
 
 ## Requirements
 * Java SE 8 or higher
