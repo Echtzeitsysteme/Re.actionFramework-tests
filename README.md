@@ -15,7 +15,7 @@ Follow the installation guide of the Re.action framework (https://github.com/Ech
 
 ### Run the example
 This repository contains a working example model of the so-called *Goldbeter-Koshland-Loop (GKL)*. You can find it in the `org.reaction.gklExample`-folder. To see it in action, follow these instructions in your dynamic workspace (i.e., start a new eclipse workspace from within your currently running development workspace):
-1. Import the `org.reaction.gklExample`-folder or import via the .psf-file ().
+1. Import the `org.reaction.gklExample`-folder or import via the .psf-file (https://raw.githubusercontent.com/Echtzeitsysteme/Re.actionFramework-tests/master/projectSet.psf).
 2. Build it by right-clicking and choosing `SimSG -> Build selected projects fully` or using the corresponding icon in the toolbar while in the SimSG perspective
 4. If you still get compilation errors, try building the project as normal Java project now
 5. Now you are able to run e.g. `GKLBenchmark` in `org.reaction.gklExample.benchmark`. You can choose between the Pattern Matching Engines *HiPE* and *Democles* by (un-)commenting the corresponding lines in the `GKLBenchmark`-file.
