@@ -8,6 +8,7 @@ import org.reaction.test.api.TestAPI;
 
 
 import ReactionModel.ReactionContainer;
+import ReactionModel.ReactionModelPackage;
 
 public class PatternTest {
 
@@ -16,6 +17,7 @@ public class PatternTest {
 	
 	@Before
 	public void setup() {
+		ReactionModelPackage.eINSTANCE.eClass();
 		testGen = new TestInstanceGenerator();
 	}
 	
@@ -213,55 +215,55 @@ public class PatternTest {
 		assertTrue(api.freeGenericBinding().countMatches() == 0);
 		assertTrue(api.obs_aWithFreeB().countMatches() == 20);
 	}
-//	
-//	@Test
-//	public void synthesisFreeTest() {
-//		String testCaseName = "synthesisFree";
-//		container = testGen.createTestInstance(testCaseName);
-//		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-//		// Hipe somehow has a problem with initializing the api?
-//		TestAPI api = validator.initAPI();
-//
-//		assertTrue(api.synthesisFree().countMatches() == 1);
-//		assertTrue(api.obs_synthesisFreeTest().countMatches() == 0);
-//
-//		api.synthesisFree().apply(20);
-//		
-//		assertTrue(api.synthesisFree().countMatches() == 1);
-//		assertTrue(api.obs_synthesisFreeTest().countMatches() == 20);
-//	}
-//	
-//	@Test
-//	public void synthesisCustomStateTest() {
-//		String testCaseName = "synthesisCustomState";
-//		container = testGen.createTestInstance(testCaseName);
-//		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-//		// Hipe somehow has a problem with initializing the api?
-//		TestAPI api = validator.initAPI();
-//
-//		assertTrue(api.synthesisCustomState().countMatches() == 1);
-//		assertTrue(api.obs_synthesisCustomStateTest().countMatches() == 0);
-//
-//		api.synthesisCustomState().apply(20);
-//		
-//		assertTrue(api.synthesisCustomState().countMatches() == 1);
-//		assertTrue(api.obs_synthesisFreeTest().countMatches() == 20);
-//	}
-//
-//	@Test
-//	public void synthesisBoundTest() {
-//		String testCaseName = "synthesisBound";
-//		container = testGen.createTestInstance(testCaseName);
-//		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-//		// Hipe somehow has a problem with initializing the api?
-//		TestAPI api = validator.initAPI();
-//
-//		assertTrue(api.synthesisBound().countMatches() == 1);
-//		assertTrue(api.obs_synthesisBoundTest().countMatches() == 0);
-//
-//		api.synthesisBound().apply(20);
-//		
-//		assertTrue(api.synthesisBound().countMatches() == 1);
-//		assertTrue(api.obs_synthesisBoundTest()().countMatches() == 20);
-//	}
+	
+	@Test
+	public void synthesisDefaultTest() {
+		String testCaseName = "synthesisDefault";
+		container = testGen.createTestInstance(testCaseName);
+		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
+		// Hipe somehow has a problem with initializing the api?
+		TestAPI api = validator.initAPI();
+
+		assertTrue(api.synthesisDefault().countMatches() == 1);
+		assertTrue(api.obs_synthesisDefaultTest().countMatches() == 0);
+
+		api.synthesisDefault().apply(20);
+		
+		assertTrue(api.synthesisDefault().countMatches() == 1);
+		assertTrue(api.obs_synthesisDefaultTest().countMatches() == 20);
+	}
+	
+	@Test
+	public void synthesisCustomStateTest() {
+		String testCaseName = "synthesisCustomState";
+		container = testGen.createTestInstance(testCaseName);
+		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
+		// Hipe somehow has a problem with initializing the api?
+		TestAPI api = validator.initAPI();
+
+		assertTrue(api.synthesisCustomState().countMatches() == 1);
+		assertTrue(api.obs_synthesisCustomStateTest().countMatches() == 0);
+
+		api.synthesisCustomState().apply(20);
+		
+		assertTrue(api.synthesisCustomState().countMatches() == 1);
+		assertTrue(api.obs_synthesisCustomStateTest().countMatches() == 20);
+	}
+
+	@Test
+	public void synthesisAndBindTest() {
+		String testCaseName = "synthesisBound";
+		container = testGen.createTestInstance(testCaseName);
+		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
+		// Hipe somehow has a problem with initializing the api?
+		TestAPI api = validator.initAPI();
+
+		assertTrue(api.synthesisAndBind().countMatches() == 1);
+		assertTrue(api.obs_synthesisAndBindTest().countMatches() == 0);
+
+		api.synthesisAndBind().apply(20);
+		
+		assertTrue(api.synthesisAndBind().countMatches() == 1);
+		assertTrue(api.obs_synthesisAndBindTest().countMatches() == 20);
+	}
 }

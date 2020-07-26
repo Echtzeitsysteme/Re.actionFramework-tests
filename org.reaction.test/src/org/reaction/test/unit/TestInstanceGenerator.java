@@ -2,6 +2,7 @@ package org.reaction.test.unit;
 
 import ReactionModel.ReactionContainer;
 import ReactionModel.ReactionModelFactory;
+import ReactionModel.ReactionModelPackage;
 import TestcasesModel.A;
 import TestcasesModel.P_s;
 import TestcasesModel.T;
@@ -14,6 +15,7 @@ public class TestInstanceGenerator {
 	private TestcasesModelFactory factory;
 	
 	public TestInstanceGenerator() {
+		ReactionModelPackage.eINSTANCE.eClass();
 		factory = TestcasesModelFactory.eINSTANCE;
 	}
 	
