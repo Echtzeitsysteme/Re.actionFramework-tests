@@ -1,0 +1,34 @@
+agent A: b, c(u, p)
+agent X: b, c(u, p)
+agent T: k
+
+rule simpleBinding(a: A, t: T): 	t.k//0, a.b//0 <=> t.k+a.b 							@1.0, 1.0
+rule selfBind(a: A):				a.b//0, a.c//0 	<=> a.b+a.c							@1.0, 1.0
+rule cyclicBindings(a: A, x: X):	a//0, x//0		=> a.b+x.b, a.c+x.c 				@1.0
+observe cyclicBindingsTest(a: A, x: X): a.b+x.b, a.c+x.c 
+
+rule stateChange(x: X): 				x.c(u)//0 		<=> x.c(p)//0 					@1.0, 1.0
+rule stateChangeAndBind(x1: X, x2: X):	x1.c(u)//0, x2.c(p)//0 <=> x1.c(p)+x2.c(p) 		@1.0, 1.0
+
+#rule synthesisFree(a: A):				_ 				=> a//0 						@1.0
+#rule synthesisCustomState(a: A):		_				=> a.c(p)//0					@1.0
+#rule synthesisBound(a: A, x: X):		_				=> a.b+x.c						@1.0
+
+observe synthesisFreeTest(a: A): 			a//0
+observe synthesisCustomStateTest(a: A): 	a.c(p)//0	
+observe synthesisBoundTest(a: A, x: X): 	a.b+x.c	
+
+#rule degradation(a: A): 			a//0			=> _ 								@1.0
+#rule undefinedDegradation(a: A):	a				=> _								@1.0	#TODO: Should this be allowed?
+
+rule inRuleDegradation(a: A, x: X):	a.b+x.c, x.b//0	<=> x.b//0, x.c//0					@1.0, 1.0
+rule genericDegradation(a: A):		a.b+T.k 		=> a.b//0							@1.0
+rule wildcardSustain(a: A, t: T):	a.b+?, t.k//0, a.c//0	<=> a.b+?, a.c+t.k			@1.0, 1.0
+
+rule freeGenericBinding(a: A):		a.b+T.k			=> a.b//0							@1.0
+
+observe aWithFreeB(a: A): a.b//0
+
+
+#rule wildcardSustain(a: A, t: T):	a.b+?, t.k//0	=> a.b+?, a.c+t.k					@1.0	#TODO: Forbid because of missing a.c//0
+#rule wildcardSustain(a: A, t: T):	a.b+?, t.k//0	=> a.c+t.k							@1.0	#TODO: Forbid
