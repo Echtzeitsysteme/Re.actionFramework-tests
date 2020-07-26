@@ -18,8 +18,8 @@ complex(a: A, x: X){
 	rule synthesisCustomState:		_		=> a.c(p)//0					@1.0
 	rule synthesisAndBind:			_		=> a.b+x.c						@1.0
 	
-	rule degradation: 				a//0	=> _ 								@1.0
-	#rule undefinedDegradation):	a		=> _								@1.0	#TODO: Should this be allowed?
+	rule degradation: 				a//0	=> _ 							@1.0
+	rule undefinedDegradation:		a		=> _							@1.0
 	
 	observe synthesisDefaultTest: 			a//0
 	observe synthesisCustomStateTest: 		a.c(p)//0	

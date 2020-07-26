@@ -67,7 +67,6 @@ public class PatternTest {
 		String testCaseName = "stateChangeAndBind";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.stateChangeAndBind().countMatches() == 100);
@@ -90,7 +89,6 @@ public class PatternTest {
 		String testCaseName = "selfBind";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.selfBind().countMatches() == 20);
@@ -114,7 +112,6 @@ public class PatternTest {
 		String testCaseName = "cyclicBindings";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.cyclicBindings().countMatches() == 400);
@@ -132,10 +129,8 @@ public class PatternTest {
 		String testCaseName = "inRuleDegradation";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
-
-		
+	
 
 		assertTrue(api.inRuleDegradation().countMatches() == 20);
 		assertTrue(api.inRuleDegradationBwd().countMatches() == 0);
@@ -160,7 +155,7 @@ public class PatternTest {
 		String testCaseName = "genericDegradation";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
+
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.genericDegradation().countMatches() == 20);
@@ -178,7 +173,6 @@ public class PatternTest {
 		String testCaseName = "wildcardSustain";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.wildcardSustain().countMatches() == 100);
@@ -202,7 +196,6 @@ public class PatternTest {
 		String testCaseName = "freeGenericBinding";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.freeGenericBinding().countMatches() == 20);
@@ -221,7 +214,6 @@ public class PatternTest {
 		String testCaseName = "synthesisDefault";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.synthesisDefault().countMatches() == 1);
@@ -238,7 +230,6 @@ public class PatternTest {
 		String testCaseName = "synthesisCustomState";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.synthesisCustomState().countMatches() == 1);
@@ -255,7 +246,6 @@ public class PatternTest {
 		String testCaseName = "synthesisBound";
 		container = testGen.createTestInstance(testCaseName);
 		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
-		// Hipe somehow has a problem with initializing the api?
 		TestAPI api = validator.initAPI();
 
 		assertTrue(api.synthesisAndBind().countMatches() == 1);
@@ -265,5 +255,23 @@ public class PatternTest {
 		
 		assertTrue(api.synthesisAndBind().countMatches() == 1);
 		assertTrue(api.obs_synthesisAndBindTest().countMatches() == 20);
+	}
+	
+	@Test
+	public void undefinedDegradationTest() {
+		String testCaseName = "undefinedDegradation";
+		container = testGen.createTestInstance(testCaseName);
+		TestcasesApiProvider validator = new TestcasesApiProvider(container, testCaseName);
+		TestAPI api = validator.initAPI();
+
+		assertTrue(api.undefinedDegradation().countMatches() == 15);
+		assertTrue(api.synthesisDefault().countMatches() == 1);
+
+		while(api.undefinedDegradation().hasMatches()) {
+			api.undefinedDegradation().apply();
+		}
+		
+		assertTrue(api.undefinedDegradation().countMatches() == 0);
+		assertTrue(api.synthesisDefault().countMatches() == 1);
 	}
 }
