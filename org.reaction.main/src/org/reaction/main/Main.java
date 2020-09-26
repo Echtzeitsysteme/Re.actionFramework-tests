@@ -5,11 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.reaction.dsl.reactionLanguage.ReactionLanguagePackage;
 import org.reaction.dsl.reactionLanguage.ReactionModel;
 import org.reaction.export.BNGLFactory;
-import org.reaction.ibex.patternCreation.GTCreator;
 import org.reaction.ibex.patternCreation.IBeXCreator;
 import org.reaction.ibex.patternCreation.SimDefCreator;
 import org.reaction.reactionmodel.generator.ContainerEMF;
@@ -117,13 +116,9 @@ public class Main {
 		String modelName = null;
 		try {
 			IBeXCreator ibexCreator = new IBeXCreator(intermModel, metamodelPackage);
-			IBeXPatternSet ibexPatternSet = ibexCreator.getIBeXPatternSet();
+			IBeXModel ibexModel = ibexCreator.getIBeXModel();
 			String ibexSaveLocation = trgProjectLocation + "/model/ibex-patterns.xmi";
 			ibexCreator.savePatternSet(ibexSaveLocation);
-
-			GTCreator gtCreator = new GTCreator(ibexPatternSet);
-			String gtSaveLocation = trgProjectLocation + "/model/gtRules.xmi";
-			gtCreator.saveRuleSet(gtSaveLocation);
 
 			SimDefCreator simDefCreator = new SimDefCreator(intermModel, trgProjectLocation);
 			modelName = simDefCreator.getDefinition().getName();
