@@ -16,10 +16,10 @@ public class GKLBenchmark {
 		// Choose Pattern Matching Engine to use
 //		api.configureForDemocles();
 		api.configureForHiPE();
-
+		
 		api.configureStochasticSimulation();
 		SimulationConfigurator config = api.getSimulationConfigurator();
-
+		config.setConsoleInfoLevel(0);
 		// Set Model to use
 		config.setModel("GKLModel"); // The name of your .react-file + "Model"
 		config.addObservableStatistic();
@@ -28,7 +28,7 @@ public class GKLBenchmark {
 		sim.initializeClocked();
 		sim.runClocked();
 		sim.printCurrentMatches();
-		sim.displayResults();
+		sim.displayResults(true);
 		sim.saveModelGraph();
 		sim.finish();
 
